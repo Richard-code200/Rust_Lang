@@ -1,0 +1,11 @@
+[workspace]
+
+members = [
+  "branches",
+  "guessing_game",
+  "functions_learn",
+  "ownership_learn",
+  "reference_borrowing",
+  "slice_learn",
+  "variables_learn",
+]
