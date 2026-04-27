@@ -8,4 +8,7 @@ members = [
   "reference_borrowing",
   "slice_learn",
   "variables_learn",
+  "struct_learn",
 ]
+
+resolver = "3"
