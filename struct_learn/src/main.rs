@@ -10,6 +10,13 @@ struct Color(i32, i32, i32);
 struct Point(i32, i32, i32);
 
 struct AlwaysEqual;
+
+#[derive(Debug)]
+struct Rectangle {
+    width: u32,
+    height: u32,
+}
+
 fn main() {
     let mut user1 = User {
         active: true,
@@ -29,6 +36,23 @@ fn main() {
     let origin = Point(0, 0, 0);
 
     let subject = AlwaysEqual;
+
+    let rect1 = Rectangle {
+        width: 30,
+        height: 50,
+    };
+    println!(
+        "The area of the rectangle is {} square pixels.",
+        area(&rect1)
+    );
+    println!("rect1 is {:?}", rect1);
+
+    let scale = 2;
+    let rect1 = Rectangle {
+        width: dbg!(30 * scale),
+        height: 50,
+    };
+    dbg!(&rect1);
 }
 
 fn build_user(email: String, username: String) -> User {
@@ -38,4 +62,8 @@ fn build_user(email: String, username: String) -> User {
         email,
         sign_in_count: 1,
     }
+}
+
+fn area(rectangle: &Rectangle) -> u32 {
+    rectangle.width * rectangle.height
 }
