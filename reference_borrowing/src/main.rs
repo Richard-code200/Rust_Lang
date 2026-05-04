@@ -1,3 +1,4 @@
+#![allow(unused)]
 mod slice;
 fn main() {
     let s1 = String::from("hello");
