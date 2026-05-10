@@ -3,6 +3,10 @@
 version = 4
 
 [[package]]
+name = "algo_learn"
+version = "0.1.0"
+
+[[package]]
 name = "branches"
 version = "0.1.0"
 
