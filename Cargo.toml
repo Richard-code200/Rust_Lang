@@ -8,7 +8,7 @@ members = [
   "reference_borrowing",
   "slice_learn",
   "variables_learn",
-  "struct_learn", "algo_learn",
+  "struct_learn", "algo_learn", "enums_learn",
 ]
 
 resolver = "3"
