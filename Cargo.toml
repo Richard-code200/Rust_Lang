@@ -5,10 +5,14 @@ members = [
   "guessing_game",
   "functions_learn",
   "ownership_learn",
+  "match_learn",
   "reference_borrowing",
   "slice_learn",
   "variables_learn",
-  "struct_learn", "algo_learn", "enums_learn",
+  "struct_learn",
+  "algo_learn",
+  "enums_learn",
+  "match_learn",
 ]
 
 resolver = "3"
