@@ -1,3 +1,4 @@
+#![allow(unused)]
 #[derive(Debug)]
 enum UsState {
     Alabama,
@@ -18,7 +19,7 @@ fn main() {
     match dice_roll {
         3 => add_fancy_hat(),
         7 => remove_fancy_hat(),
-        other => move_player(other),
+        _ => reroll(),
     }
 }
 fn value_in_cents(coin: Coin) -> u8 {
@@ -45,3 +46,4 @@ fn plus_one(x: Option<i32>) -> Option<i32> {
 fn add_fancy_hat() {}
 fn remove_fancy_hat() {}
 fn move_player(num_spaces: u8) {}
+fn reroll() {}
