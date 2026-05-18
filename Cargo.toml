@@ -13,7 +13,7 @@ members = [
   "algo_learn",
   "enums_learn",
   "match_learn",
-  "iflet_learn",
+  "iflet_learn", "example",
 ]
 
 resolver = "3"

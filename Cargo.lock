@@ -21,6 +21,10 @@ name = "enums_learn"
 version = "0.1.0"
 
 [[package]]
+name = "example"
+version = "0.1.0"
+
+[[package]]
 name = "functions_learn"
 version = "0.1.0"
 
