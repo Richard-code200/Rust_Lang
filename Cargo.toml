@@ -13,7 +13,12 @@ members = [
   "algo_learn",
   "enums_learn",
   "match_learn",
-  "iflet_learn", "example", "Function_and_ControlFlow",
+  "iflet_learn",
+  "example",
+  "Function_and_ControlFlow",
+  "temp_converter",
+  "nth_fibonacci",
+  "owenership", "borrow_and_reference",
 ]
 
 resolver = "3"

@@ -11,6 +11,10 @@ name = "algo_learn"
 version = "0.1.0"
 
 [[package]]
+name = "borrow_and_reference"
+version = "0.1.0"
+
+[[package]]
 name = "branches"
 version = "0.1.0"
 
@@ -63,6 +67,14 @@ checksum = "48f5d2a454e16a5ea0f4ced81bd44e4cfc7bd3a507b61887c99fd3538b28e4af"
 
 [[package]]
 name = "match_learn"
+version = "0.1.0"
+
+[[package]]
+name = "nth_fibonacci"
+version = "0.1.0"
+
+[[package]]
+name = "owenership"
 version = "0.1.0"
 
 [[package]]
@@ -153,6 +165,10 @@ dependencies = [
  "quote",
  "unicode-ident",
 ]
+
+[[package]]
+name = "temp_converter"
+version = "0.1.0"
 
 [[package]]
 name = "unicode-ident"
