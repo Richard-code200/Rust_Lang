@@ -1,6 +1,4 @@
 fn main() {
-    println!("Hello, world!");
-
     another_function();
     another_function_pro(5);
 
