@@ -18,7 +18,9 @@ members = [
   "Function_and_ControlFlow",
   "temp_converter",
   "nth_fibonacci",
-  "owenership", "borrow_and_reference",
+  "owenership",
+  "borrow_and_reference",
+  "collections_learn",
 ]
 
 resolver = "3"
