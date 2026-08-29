@@ -25,7 +25,7 @@ fn main() {
     //rust是静态类型语言，在编译的时候必须确定所有变量的类型
     //根据值及其使用方式，编译器通常可以推断处我们想要用的类型
     //当多种类型均有可能的时候，可以用转换函数
-    //比如上面使用parse将String转换为u32
+    // 比如上面使用 parse 将字符串切片转换为 u32
     //此处必须有类型注释:u32 ；否则编译器无确定需要转换的类型
 
     let x = 2.0;
@@ -59,14 +59,14 @@ fn main() {
     let five_hundred = tup.0;
     let six_point_four = tup.1;
     let one = tup.2;
-    //也可以用传统的方式进行索引赋值，跟大多数语言一样，第一个索引值为0
+    // 也可以按从 0 开始的位置索引元组字段
 
     let a = [1, 2, 3, 4, 5];
     //数组类型，依旧可以自动判断类型
     //只要不是太复杂的结构体，一般编译器都能推断出类型
 
-    //当需要在栈(stack)而不是在堆(heap)上为数据分配空间
-    //或想要确保有固定数量的元素时,数组很有用
+    // 当需要固定数量、相同类型的元素时，数组很有用；其存储位置取决于上下文，
+    // 例如数组可以直接存于栈上，也可以通过 Box 放在堆上。
     //如果需要更灵活的类型,可以使用vector类型
     let months = [
         "January",
@@ -90,7 +90,7 @@ fn main() {
 
     let first = a[0];
     let second = a[1];
-    //依旧和传统编程语言一样使用索引赋值,但需要使用数组索引[]
+    // 可以用 [] 按位置读取数组元素；此处并不是给索引赋值
 
     let a: [i32; 5] = [125, 222, 325, 404, 512];
 
@@ -107,8 +107,8 @@ fn main() {
         .parse()
         .expect("Index entered was not a number");
     //转换类型
-    let element = a[index];
-
-    println!("The value of the element at index {index} is: {element}");
+    match a.get(index) {
+        Some(element) => println!("The value of the element at index {index} is: {element}"),
+        None => println!("There is no element at index {index}"),
+    }
 }
-

@@ -13,16 +13,14 @@ fn main() {
     let y = x;
 
     println!("x = {x}, y = {y}");
-    // 这段代码没有使用 clone
-    // 但x依然有效且没有被移动到y中
-    // 原因是整型这种大小已知的类型被整个存储在栈上
-    // 所以拷贝是很快速的，没必要使x无效
-    // 此处涉及Rust的特殊注解 Copy trait
+    // 这段代码没有使用 clone，但 x 依然有效
+    // 因为 i32 实现了 Copy，赋值时复制值而不是移动所有权
+    // Copy 是类型语义，不能仅根据值存储在栈上还是堆上判断
 
     let s1 = String::from("hello");
     let s2 = s1;
     // Rust在此处做的是移动(move)而不是拷贝
-    // s1在后面已经不可使用,其被s2"覆盖"了
+    // String 的所有权从 s1 移动到 s2，之后 s1 不再有效
 
     let s3 = String::from("hello");
     let s4 = s3.clone();
@@ -38,14 +36,14 @@ fn main() {
 
     let z = 5; // z 进入作用域
 
-    makes_copy(z); // z 应该移动到函数里
-    // 但i32 是 Copy 的，所以后面可以继续使用 z
+    makes_copy(z); // i32 实现了 Copy，按值传参时复制 z 的值
+    // 所以后面可以继续使用 z
 
     println!("{}", z);
 
     let s6 = String::from("hello");
     let (s7, len) = calculate_length(s6);
-    println!("The length of '{s7} is {len}");
+    println!("The length of '{s7}' is {len}");
 
     let s1 = gives_ownership();
     // gives_ownership 将它的返回值传递给 s1
@@ -55,17 +53,17 @@ fn main() {
 
     let s3 = takes_and_gives_back(s2);
     // s2 被传入 takes_and_gives_back, 它的返回值又传递给 s3
-} // 此处, s3 移出作用域并被丢弃
+} // 此处，s3 离开作用域并被丢弃
 //  s2 被 move, 所以无事发生
-//  s1 移出作用域并被丢弃
+//  s1 离开作用域并被丢弃
 // 此作用域结束,所有变量不再有效
 // 当变量离开作用域, Rust 将自动调用一个特殊的函数
-// 这个函数叫 drop ,他会释放代码的内存
+// 这个函数叫 drop，它会释放值占用的资源
 
 fn takes_ownership(some_string: String) {
     // some_string进入作用域
     println!("{some_string}");
-} // 此处，some_string 移出作用域并调用 'drop' 方法
+} // 此处，some_string 离开作用域并调用 'drop' 方法
 // 占用的内存被释放
 
 fn makes_copy(some_integer: i32) {
@@ -73,7 +71,7 @@ fn makes_copy(some_integer: i32) {
 } // 同上
 
 fn gives_ownership() -> String {
-    // gives_ownership 将会把返回值传入调用他的函数
+    // gives_ownership 会把返回值的所有权移交给调用者
     let some_string = String::from("yours"); // some_string进入作用域
     some_string // 返回 some_string 并将其移至调用函数
 }
@@ -83,7 +81,6 @@ fn takes_and_gives_back(a_string: String) -> String {
 }
 
 fn calculate_length(s: String) -> (String, usize) {
-    let length = s.len(); //len() 返回字符串的长度
+    let length = s.len(); // String::len() 返回 UTF-8 内容的字节长度
     (s, length)
 }
-

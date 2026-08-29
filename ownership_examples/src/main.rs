@@ -8,6 +8,7 @@ fn main() {
 
     let first = String::from("Ferris");
     let full = add_suffix(first);
+    println!("{full}");
     //  println!("{full}, originally {first}");
 }
 

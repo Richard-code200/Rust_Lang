@@ -1,9 +1,9 @@
 fn main() {
     let number = 3;
     if number < 5 {
-        println!("condidtion was true");
+        println!("condition was true");
     } else {
-        println!("condiiton was false");
+        println!("condition was false");
     }
     if number != 0 {
         println!("number was something other than zero");
@@ -49,14 +49,14 @@ fn main() {
             remaining -= 1;
         }
         count += 1;
-    } //remaining递减,知道等于9退出loop,count加1,当count等于2时退出counting_up循环
+    } // remaining 递减，直到等于 9 时退出 loop；count 加 1，当 count 等于 2 时退出 counting_up 循环。
     println!("End count = {count}");
 
     let mut number = 3;
     while number != 0 {
         println!("{number}!");
         number -= 1;
-    } //while判断条件是否为ture,若为ture则循环运行代码
+    } // while 判断条件是否为 true，若为 true 则循环运行代码。
     println!("LIFTOFF!!!");
 
     let a = [10, 20, 30, 40, 50];

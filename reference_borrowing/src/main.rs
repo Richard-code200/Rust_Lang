@@ -12,15 +12,15 @@ fn main() {
     println!("The str is : '{s}'");
 
     let r1 = &mut s;
-    // let r2 = &mut s;    不能同时存在两个或多个变量借用同一个可变变量
-    // 第二个借用的变量会把第一个覆盖掉
-    // println!("{}, {}", s, r1);    同时借用的变量不可以和被借用的变量同时使用
+    // let r2 = &mut s;    r1 后续仍会使用时，不能再创建指向同一值的可变借用
+    // 第二次借用不会覆盖第一次借用；若后续仍使用 r1，两个可变借用会冲突
+    // println!("{}, {}", s, r1);    可变借用有效期间不能通过原变量访问该值
     println!("{}", r1);
     let r2 = &mut s; //在第一个借用使用完毕后可以再次借用
     println!("{}", r2);
     // println!("{}", r1);
     /*
-     *如果再次使用第一个引用变量会造成数据竞争,会出现如下报错,无法编译通过
+     *如果在第二次可变借用后再次使用 r1，借用检查器会拒绝编译，从而避免潜在的数据竞争
      *For more information about this error, try `rustc --explain E0499`.
      *error: could not compile `reference_borrowing` (bin "reference_borrowing") due to 1 previous error
      */
@@ -30,11 +30,11 @@ fn main() {
     let r1 = &s;
     let r2 = &s;
     println!("{r1} and {r2}");
-    // 此位置之后 r1 和 r2 不再使用,作用域结束
+    // r1 和 r2 的共享借用在最后一次使用后基于 NLL 结束，变量的词法作用域并未结束
     let r3 = &mut s;
     println!("{r3}");
 
-    let reference_to_noting = dangle();
+    let reference_to_nothing = dangle();
 }
 
 fn calculate_length(s: &str) -> usize {

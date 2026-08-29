@@ -4,14 +4,14 @@ fn main() {
 
     print_labeled_measurement(5, 'h');
 
-    let y = 6;
-    //let x =(let y = 6);
-    // Rust中不支持通过语句返回值,因此上面这段代码是错误的
+    let _y = 6;
+    // let x = (let y = 6);
+    // let 绑定是语句，不返回值，因此不能作为表达式赋值给 x。
 
     let y = {
         let x = 3;
         x + 1
-    }; // 该括号内的部分也是一个表达式
+    }; // 代码块是表达式，末尾不带分号的 x + 1 是其返回值。
 
     println!("The value of y is: {y}");
 
@@ -45,8 +45,13 @@ fn main() {
     let number = if condition { 5 } else { 6 };
     println!("The value of number is: {number}");
 
+    let mut repetitions = 0;
     loop {
         println!("again!");
+        repetitions += 1;
+        if repetitions == 3 {
+            break;
+        }
     }
 
     let mut counter = 0;

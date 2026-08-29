@@ -1,7 +1,5 @@
 #![allow(unused)]
 
-use std::fmt::format;
-
 enum SpreadsheetCell {
     Int(i32),
     Float(f64),
@@ -85,8 +83,10 @@ fn main() {
     println!("The length of string is {len}");
     let len = String::from("Здравствуйте").len();
     println!("The length of string is {len}");
+    // String::len 返回 UTF-8 编码后的字节数，而不是字符数。
 
     let hello = String::from("Здравствуйте");
+    // 字符串切片的起止位置必须位于 UTF-8 字符边界，否则程序会 panic。
     let s = &hello[0..4];
     println!("{s}");
 

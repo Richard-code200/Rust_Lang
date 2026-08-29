@@ -27,7 +27,14 @@ struct ChangeColorMessage(i32, i32, i32); // 元组结构体
 
 impl Message {
     fn call(&self) {
-        // ...
+        match self {
+            Message::Quit => println!("Quit"),
+            Message::Move { x, y } => println!("Move to ({x}, {y})"),
+            Message::Write(text) => println!("{text}"),
+            Message::ChangeColor(red, green, blue) => {
+                println!("Change color to ({red}, {green}, {blue})");
+            }
+        }
     }
 }
 

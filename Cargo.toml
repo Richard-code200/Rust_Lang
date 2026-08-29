@@ -12,15 +12,15 @@ members = [
   "struct_learn",
   "algo_learn",
   "enums_learn",
-  "match_learn",
-  "iflet_learn",
+  "if_let_learn",
   "example",
-  "Function_and_ControlFlow",
+  "function_and_control_flow",
   "temp_converter",
   "nth_fibonacci",
-  "owenership",
+  "ownership_examples",
   "borrow_and_reference",
   "collections_learn",
+  "hash_map",
 ]
 
 resolver = "3"

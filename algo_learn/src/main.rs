@@ -1,27 +1,10 @@
-/*
-假设你是一位很棒的家长，想要给你的孩子们一些小饼干。但是每个孩子最多只能给一块饼干。
-
-对每个孩子 i，都有一个胃口值 g[i]，这是能让孩子们满足胃口的饼干的最小尺寸；并且每块饼干 j，都有一个尺寸 s[j]。如果 s[j] >= g[i]，我们可以将这个饼干 j 分配给孩子 i，这个孩子会得到满足。
-
-设计算法尽可能满足越多数量的孩子，并输出这个最大数值。
-输入格式
-
-    第一行：孩子数 m 和饼干数 n
-    第二行：m 个整数，表示孩子们的胃口值
-    第三行：n 个整数，表示每块饼干的尺寸
-
-输出格式
-
-一个整数，表示最多能满足的孩子数量。
-*/
-use std::io;
 fn main() {
-    println!("请输入孩子数m和饼干数n:");
-    let mut m = String::new();
-    io::stdin().read_line(&mut m).expect("读取失败");
+    let mut greed = [1, 2, 3];
+    let mut cookies = [1, 1];
+    println!("{}", find_content_children(&mut greed, &mut cookies));
 }
 
-fn BSort<T: Ord>(arr: &mut [T]) {
+fn bubble_sort<T: Ord>(arr: &mut [T]) {
     let len = arr.len();
     for i in 0..len {
         let mut swapped = false;
@@ -34,5 +17,62 @@ fn BSort<T: Ord>(arr: &mut [T]) {
         if !swapped {
             break;
         }
+    }
+}
+
+fn find_content_children<T: Ord>(greed: &mut [T], cookies: &mut [T]) -> usize {
+    bubble_sort(greed);
+    bubble_sort(cookies);
+
+    let (mut child, mut cookie) = (0, 0);
+    while child < greed.len() && cookie < cookies.len() {
+        if cookies[cookie] >= greed[child] {
+            child += 1;
+        }
+        cookie += 1;
+    }
+
+    child
+}
+
+#[cfg(test)]
+mod tests {
+    use super::{bubble_sort, find_content_children};
+
+    #[test]
+    fn bubble_sort_orders_generic_values_and_accepts_empty_input() {
+        let mut numbers = [5, 1, 4, 2, 8];
+        bubble_sort(&mut numbers);
+        assert_eq!(numbers, [1, 2, 4, 5, 8]);
+
+        let mut words = ["pear", "apple", "orange"];
+        bubble_sort(&mut words);
+        assert_eq!(words, ["apple", "orange", "pear"]);
+
+        let mut empty: [i32; 0] = [];
+        bubble_sort(&mut empty);
+        assert_eq!(empty, []);
+    }
+
+    #[test]
+    fn find_content_children_maximizes_assignments() {
+        let mut greed = [1, 2, 3];
+        let mut cookies = [1, 1];
+        assert_eq!(find_content_children(&mut greed, &mut cookies), 1);
+
+        let mut greed = [1, 2];
+        let mut cookies = [1, 2, 3];
+        assert_eq!(find_content_children(&mut greed, &mut cookies), 2);
+    }
+
+    #[test]
+    fn find_content_children_accepts_empty_input() {
+        let mut no_children: [u32; 0] = [];
+        let mut cookies = [1];
+        assert_eq!(find_content_children(&mut no_children, &mut cookies), 0);
+
+        let mut children = [1];
+        let mut no_cookies: [u32; 0] = [];
+        assert_eq!(find_content_children(&mut children, &mut no_cookies), 0);
     }
 }
