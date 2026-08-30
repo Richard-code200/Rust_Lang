@@ -88,4 +88,13 @@ mod tests {
     fn returns_none_for_empty_input() {
         assert_eq!(nth_word("", 0), None);
     }
+
+    #[test]
+    fn ignores_empty_segments_around_ascii_spaces() {
+        let input = "   hello    rust   ";
+
+        assert_eq!(nth_word(input, 0), Some("hello"));
+        assert_eq!(nth_word(input, 1), Some("rust"));
+        assert_eq!(nth_word(input, 2), None);
+    }
 }

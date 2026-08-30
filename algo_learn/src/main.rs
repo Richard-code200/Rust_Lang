@@ -52,6 +52,10 @@ mod tests {
         let mut empty: [i32; 0] = [];
         bubble_sort(&mut empty);
         assert_eq!(empty, []);
+
+        let mut single = [42];
+        bubble_sort(&mut single);
+        assert_eq!(single, [42]);
     }
 
     #[test]
