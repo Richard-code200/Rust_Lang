@@ -20,7 +20,7 @@ members = [
   "ownership_examples",
   "borrow_and_reference",
   "collections_learn",
-  "hash_map",
+  "hash_map", "panic_learn",
 ]
 
 resolver = "3"
