@@ -15,5 +15,6 @@ fn main() {
     }
     print_point(&p);
 
+    let x = 1;
     // 若在 print_point(&p) 之后继续使用 x，会触发 E0502。
 }
